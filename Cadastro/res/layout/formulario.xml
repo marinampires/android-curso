@@ -1,0 +1,83 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent">
+	    
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+		
+	    <ImageView
+	        android:contentDescription="@string/descriptionFotoAluno"
+	        android:id="@+id/foto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/ic_no_image"
+	        android:layout_gravity="center" />
+	    
+	    <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/nomeFormulario" />
+	    
+	    <EditText
+	        android:id="@+id/nome"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:hint="@string/nomeHint" />
+	
+	    <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/telefoneFormulario" />
+	    
+	    <EditText
+	        android:id="@+id/telefone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:hint="@string/telefoneHint"
+	        android:inputType="phone"
+	        android:maxLength="16" />
+	    
+	    <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/enderecoFormulario" />
+	    
+	    <EditText
+	        android:id="@+id/endereco"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:hint="@string/enderecoHint" />
+	    
+	   <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/siteFormulario" />
+	    
+	    <EditText
+	        android:id="@+id/site"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+	        android:hint="@string/siteHint" />
+	        
+	   <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/notaFormulario" />
+	   
+	   <RatingBar 
+	       android:id="@+id/nota"
+	       android:layout_height="wrap_content"
+	       android:layout_width="wrap_content"
+	       android:numStars="5"
+	       />
+	   
+	   <Button 
+	       android:id="@+id/botao"
+	       android:layout_width="match_parent"
+	       android:layout_height="wrap_content"
+	       android:text="@string/botaoFormulario"/>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:background="@drawable/borda"
+    android:stretchColumns="1" >
+    
+    <TableRow >
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:text="DETALHES DA PROVA"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    
+    <TableRow >
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Matéria:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/detalhe_prova_materia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp" />
+
+    </TableRow>
+    
+    <TableRow >
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Data:" />
+
+        <TextView android:id="@+id/detalhe_prova_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </TableRow>
+    
+    <TableRow >
+        <ListView android:id="@+id/detalhe_prova_topicos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableRow>
+
+</TableLayout>

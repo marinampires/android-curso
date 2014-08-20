@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Agenda</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_formulario">Formulário</string>
+    <string name="descriptionFotoAluno">Foto do Aluno</string>
+    <string name="nomeFormulario">Nome:</string>
+    <string name="telefoneFormulario">Telefone:</string>
+    <string name="enderecoFormulario">Endereço:</string>
+    <string name="siteFormulario">Site:</string>
+    <string name="notaFormulario">Nota:</string>
+    <string name="nomeHint">Digite o seu nome aqui...</string>
+    <string name="telefoneHint">Digite seu telefone aqui...</string>
+    <string name="enderecoHint">Digite seu endereço aqui...</string>
+    <string name="siteHint">Digite o seu site aqui...</string>
+    <string name="botaoFormulario">Gravar</string>
+    <string name="title_activity_provas">Provas</string>
+
+</resources>

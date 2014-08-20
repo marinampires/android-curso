@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="br.com.caelum.olamundo.CopiaActivity" >
+
+    <ImageView
+        android:src="@drawable/ic_launcher" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:contentDescription="@string/description"
+        android:layout_gravity="center_horizontal"/>
+    
+    <EditText
+        android:hint="@string/texto_hint"
+        android:id="@+id/texto_editado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+        
+    <Button
+        android:id="@+id/btn_copia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_copia"
+        android:onClick="copiar" />
+    
+    <TextView
+        android:id="@+id/texto_copiado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_copiado" />
+
+</LinearLayout>
