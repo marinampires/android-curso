@@ -23,13 +23,17 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
-            android:name=".view.ListaAlunosActivity"
+            android:name=".view.GaleriaActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+         <activity
+            android:name=".view.ListaAlunosActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".view.FormularioActivity"

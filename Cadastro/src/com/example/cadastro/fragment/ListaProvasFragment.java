@@ -19,6 +19,14 @@ import com.example.cadastro.view.ProvasActivity;
 
 public class ListaProvasFragment extends Fragment {
 	private ListView listViewProvas;
+	private boolean isTablet;
+	
+	public ListaProvasFragment(boolean isTablet) {
+		super();
+		this.isTablet = isTablet;
+	}
+
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +53,11 @@ public class ListaProvasFragment extends Fragment {
 			
 		});
 		
+		if(isTablet){
+			//Inicializando com a 1a prova
+			ProvasActivity calendarioProvas = (ProvasActivity)getActivity();
+			calendarioProvas.setProva(prova);
+		}
 		return layoutProvas;
 	}
 

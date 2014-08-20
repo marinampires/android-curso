@@ -19,15 +19,15 @@ public class ProvasActivity extends FragmentActivity {
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		
 		if(isTablet()){
-			transaction.replace(R.id.provas_lista, new ListaProvasFragment()).
+			transaction.replace(R.id.provas_lista, new ListaProvasFragment(true)).
 			replace(R.id.provas_view, new DetalhesProvaFragment());
 		}else{
-			transaction.replace(R.id.provas_view, new ListaProvasFragment());
+			transaction.replace(R.id.provas_view, new ListaProvasFragment(false));
 		}
 		transaction.commit();
 	}
 
-	private boolean isTablet(){
+	public boolean isTablet(){
 		return getResources().getBoolean(R.bool.isTablet);
 	}
 
