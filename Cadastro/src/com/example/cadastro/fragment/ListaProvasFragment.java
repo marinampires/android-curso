@@ -26,8 +26,6 @@ public class ListaProvasFragment extends Fragment {
 		this.isTablet = isTablet;
 	}
 
-
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View layoutProvas = inflater.inflate(R.layout.provas_lista, container, false);

@@ -47,11 +47,6 @@ public class ListaProvaAdapter extends BaseAdapter{
 		TextView materia = (TextView) view.findViewById(R.id.prova_materia);
 		materia.setText(prova.getMateria());
 		
-		TextView data = (TextView) view.findViewById(R.id.prova_data);
-		if(data != null){
-			data.setText(prova.getData());
-		}
-		
 		return view;
 	}
 
