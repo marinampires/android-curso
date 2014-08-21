@@ -25,7 +25,7 @@
         <activity
             android:name=".view.ListaAlunosActivity"
             android:label="@string/app_name" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,7 +35,6 @@
             android:name=".view.GaleriaActivity"
             android:label="@string/app_name" >
         </activity>
-
         <activity
             android:name=".view.FormularioActivity"
             android:label="@string/title_activity_formulario" >
@@ -50,8 +49,12 @@
         </receiver>
 
         <activity
-            android:name="com.example.cadastro.view.ProvasActivity"
+            android:name=".view.ProvasActivity"
             android:label="@string/title_activity_provas" >
+        </activity>
+        <activity
+            android:name=".ProvasCompletasActivity"
+            android:label="@string/title_activity_provas_completas" >
         </activity>
     </application>
 
