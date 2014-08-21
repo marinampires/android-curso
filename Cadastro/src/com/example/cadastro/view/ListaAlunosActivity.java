@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.cadastro.ProvasCompletasActivity;
 import com.example.cadastro.R;
 import com.example.cadastro.adapter.ListaAlunoAdapter;
 import com.example.cadastro.listener.ItemListaListener;
@@ -67,7 +66,7 @@ public class ListaAlunosActivity extends ActionBarActivity {
 			new EnviaAlunosTask(this).execute();
 			return false;
 		case R.id.menu_receber_provas:
-			Intent provas = new Intent(this, ProvasCompletasActivity.class);
+			Intent provas = new Intent(this, ProvasActivity.class);
 			startActivity(provas);
 			return false;
 		case R.id.menu_preferencias:

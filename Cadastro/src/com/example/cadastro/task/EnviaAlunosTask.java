@@ -39,7 +39,6 @@ public class EnviaAlunosTask extends AsyncTask<Object, Object, String>{
 	@Override
 	protected void onPreExecute() {
 		dialog = ProgressDialog.show(this.activity,"Aguarde...", "Enviando dados para o servidor", true, true);
-		
 	}
 	
 	

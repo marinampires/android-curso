@@ -19,10 +19,10 @@ public class ProvasCompletasActivity extends ActionBarActivity {
 		
 		ExpandableListView listViewProvas = (ExpandableListView) findViewById(R.id.lista_expansivel_provas);
 		Prova prova = new Prova("20/08/2014", "Programação");
-		prova.setTopicos(Arrays.asList("Algoritmo", "Iterações", "Condicional"));
+		prova.setTopicos(Arrays.asList("Algoritmo", "Iterações", "Condicional","Algoritmo", "Iterações", "Condicional"));
 		
 		Prova prova2 = new Prova("20/08/2014", "Matemática");
-		prova2.setTopicos(Arrays.asList("Álgebra Linear", "Integral", "Diferencial"));
+		prova2.setTopicos(Arrays.asList("Álgebra Linear", "Integral", "Diferencial", "Álgebra Linear", "Integral", "Diferencial"));
 		
 		List<Prova> provas = Arrays.asList(prova, prova2);
 		
