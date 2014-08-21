@@ -17,6 +17,7 @@
     <string name="siteHint">Digite o seu site aqui...</string>
     <string name="botaoFormulario">Gravar</string>
     <string name="title_activity_provas">Provas</string>
-    <string name="title_activity_provas_completas">ProvasCompletasActivity</string>
+    <string name="title_activity_provas_completas">Provas Completas</string>
+    <string name="title_activity_mapa">Alunos Próximos</string>
 
 </resources>

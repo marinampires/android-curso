@@ -60,7 +60,8 @@ public class ListaAlunosActivity extends ActionBarActivity {
 			startActivity(intent);
 			return false;
 		case R.id.menu_mapa:
-			Toast.makeText(this, "Menu mapa clicado", Toast.LENGTH_SHORT).show();
+			Intent mapa = new Intent(this, MostraAlunosProximosActivity.class);
+			startActivity(mapa);
 			break;
 		case R.id.menu_enviar_alunos:
 			new EnviaAlunosTask(this).execute();
