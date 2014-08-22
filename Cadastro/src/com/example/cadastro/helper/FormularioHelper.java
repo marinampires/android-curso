@@ -52,7 +52,7 @@ public class FormularioHelper {
 		setStringValue(site, aluno.getSite());
 		setStringValue(telefone, aluno.getTelefone());
 		if(aluno.getCaminhoFoto() != null){
-			loadPhoto(aluno.getCaminhoFoto());
+			loadPhoto(aluno.getCaminhoFoto(), false);
 		}
 		
 		nota.setProgress(aluno.getNota().intValue());
@@ -66,13 +66,14 @@ public class FormularioHelper {
 		editText.setText(value);
 	}
 	
-	public void loadPhoto(String caminhoFoto){
+	public void loadPhoto(String caminhoFoto, boolean fixOrientation){
 		this.caminhoFoto = caminhoFoto;
 		Bitmap original = BitmapFactory.decodeFile(caminhoFoto);
 		int largura = 250;
 		int altura = (original.getHeight() * largura)/original.getWidth();
 		Bitmap reduzido = Bitmap.createScaledBitmap(original, largura, altura, true);
-		reduzido = BitmapHelper.fixOrientation(reduzido);
+		if(fixOrientation)
+			reduzido = BitmapHelper.fixOrientation(reduzido);
 		this.foto.setImageBitmap(reduzido);
 	}
 	

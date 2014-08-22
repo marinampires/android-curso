@@ -1,8 +1,8 @@
 package com.example.cadastro.view;
 
-import java.io.File;
-
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,21 +24,20 @@ public class FormularioActivity extends ActionBarActivity {
 	private FormularioHelper helper;
 	private String caminhoFoto;
 	private static final int PICK_FROM_CAMERA = 101;
+	private static final int IMAGE_PICKER_SELECT = 102;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formulario);
 		EditText telefoneEdit = (EditText) findViewById(R.id.telefone);
-		telefoneEdit
-				.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+		telefoneEdit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
 		this.helper = new FormularioHelper(this);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		Aluno aluno = (Aluno) getIntent().getSerializableExtra(
-				"alunoSelecionado");
+		Aluno aluno = (Aluno) getIntent().getSerializableExtra("alunoSelecionado");
 
 		Button botao = (Button) findViewById(R.id.botao);
 
@@ -52,9 +51,7 @@ public class FormularioActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				Aluno aluno = FormularioActivity.this.helper.getAluno();
 				aluno.gravar(FormularioActivity.this);
-				Toast.makeText(FormularioActivity.this,
-						aluno.getNome() + " salvo com sucesso",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(FormularioActivity.this,aluno.getNome() + " salvo com sucesso",Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		});
@@ -63,11 +60,15 @@ public class FormularioActivity extends ActionBarActivity {
 		foto.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				FormularioActivity.this.caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
-				Uri uriFoto = Uri.fromFile(new File(FormularioActivity.this.caminhoFoto));
-				camera.putExtra(MediaStore.EXTRA_OUTPUT, uriFoto);
-				startActivityForResult(camera, PICK_FROM_CAMERA);
+//				Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//				FormularioActivity.this.caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+//				Uri uriFoto = Uri.fromFile(new File(FormularioActivity.this.caminhoFoto));
+//				camera.putExtra(MediaStore.EXTRA_OUTPUT, uriFoto);
+//				startActivityForResult(camera, PICK_FROM_CAMERA);
+				
+				Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); 
+				startActivityForResult(i, IMAGE_PICKER_SELECT);
+				
 			}
 		});
 	}
@@ -89,11 +90,25 @@ public class FormularioActivity extends ActionBarActivity {
 		}
 
 		switch (requestCode) {
-			case PICK_FROM_CAMERA: {
-				this.helper.loadPhoto(this.caminhoFoto);
+			case PICK_FROM_CAMERA: 
+				this.helper.loadPhoto(this.caminhoFoto, true);
 				break;
-	
-			}
+				
+			case IMAGE_PICKER_SELECT:
+				String pathFoto = getBitmapFromCameraData(data, this); 
+				this.helper.loadPhoto(pathFoto, false); 
+				break;
 		}
+	}
+	
+	public static String getBitmapFromCameraData(Intent data, Context context){ 
+		Uri selectedImage = data.getData(); 
+		String[] filePathColumn = { MediaStore.Images.Media.DATA }; 
+		Cursor cursor = context.getContentResolver().query(selectedImage,filePathColumn, null, null, null); 
+		cursor.moveToFirst(); 
+		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+		String picturePath = cursor.getString(columnIndex); 
+		cursor.close(); 
+		return picturePath; 
 	}
 }
