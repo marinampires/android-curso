@@ -35,7 +35,7 @@ public class MapaFragment extends SupportMapFragment{
 		}
 	}
 	
-	private void centralizaNo(LatLng local){
+	public void centralizaNo(LatLng local){
 		if(local != null){
 			GoogleMap mapa = getMap();
 			mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(local, 17));
