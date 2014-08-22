@@ -8,8 +8,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ExpandableListView;
 
 import com.example.cadastro.R;
-import com.example.cadastro.R.id;
-import com.example.cadastro.R.layout;
 import com.example.cadastro.fragment.ListaProvasCompletaAdapter;
 import com.example.cadastro.model.Prova;
 

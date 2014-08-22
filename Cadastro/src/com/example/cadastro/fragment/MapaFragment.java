@@ -22,8 +22,8 @@ public class MapaFragment extends SupportMapFragment{
 		Localizador localizador = new Localizador(context);
 		LatLng local = localizador.getCoordenada("Rua ouvidor 50, rio de janeiro");
 		if(local != null){
-			mapa.addMarker(new MarkerOptions().title("Caelum").snippet("Ensino e inovação").position(local));
-			centralizaNo(local);
+			mapa.addMarker(new MarkerOptions().title("Caelum").snippet("Ensino e inovaÔøΩÔøΩo").position(local));
+			//centralizaNo(local);
 		}
 		
 		List<Aluno> alunos = Aluno.getAlunos(context);

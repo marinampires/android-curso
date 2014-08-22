@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.example.cadastro.R;
 import com.example.cadastro.fragment.MapaFragment;
+import com.example.cadastro.listener.AtualizadorLocalizacaoListener;
 
 public class MostraAlunosProximosActivity extends FragmentActivity {
 	
@@ -15,6 +16,8 @@ public class MostraAlunosProximosActivity extends FragmentActivity {
 		setContentView(R.layout.mapa_layout);
 		
 		MapaFragment mapa = new MapaFragment();
+		//criando o listner
+		new AtualizadorLocalizacaoListener(this, mapa);
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.mapa, mapa);
 		transaction.commit();
