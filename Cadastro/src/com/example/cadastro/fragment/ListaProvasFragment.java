@@ -19,11 +19,16 @@ import com.example.cadastro.view.ProvasActivity;
 
 public class ListaProvasFragment extends Fragment {
 	private ListView listViewProvas;
-	private boolean isTablet;
-	
-	public ListaProvasFragment(boolean isTablet) {
-		super();
-		this.isTablet = isTablet;
+	private List<Prova> provas;
+
+	public ListaProvasFragment() {
+		Prova prova = new Prova("20/08/2014", "Programação");
+		prova.setTopicos(Arrays.asList("Algoritmo", "Iterações", "Condicional"));
+		
+		Prova prova2 = new Prova("20/08/2014", "Matemática");
+		prova2.setTopicos(Arrays.asList("Álgebra Linear", "Integral", "Diferencial"));
+		
+		provas = Arrays.asList(prova, prova2);
 	}
 
 	@Override
@@ -31,13 +36,6 @@ public class ListaProvasFragment extends Fragment {
 		View layoutProvas = inflater.inflate(R.layout.provas_lista, container, false);
 		this.listViewProvas = (ListView) layoutProvas.findViewById(R.id.lista_provas);
 		
-		Prova prova = new Prova("20/08/2014", "Programação");
-		prova.setTopicos(Arrays.asList("Algoritmo", "Iterações", "Condicional"));
-		
-		Prova prova2 = new Prova("20/08/2014", "Matemática");
-		prova2.setTopicos(Arrays.asList("Álgebra Linear", "Integral", "Diferencial"));
-		
-		List<Prova> provas = Arrays.asList(prova, prova2);
 		this.listViewProvas.setAdapter(new ListaProvaAdapter(provas, this));
 		
 		this.listViewProvas.setOnItemClickListener(new OnItemClickListener() {
@@ -51,13 +49,11 @@ public class ListaProvasFragment extends Fragment {
 			
 		});
 		
-		if(isTablet){
-			//Inicializando com a 1a prova
-			ProvasActivity calendarioProvas = (ProvasActivity)getActivity();
-			calendarioProvas.setProva(prova);
-		}
 		return layoutProvas;
 	}
 
+	public List<Prova> getProvas(){
+		return this.provas;
+	}
 	
 }

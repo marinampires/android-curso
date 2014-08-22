@@ -12,39 +12,41 @@ import com.example.cadastro.model.Prova;
 public class ProvasActivity extends FragmentActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle estado) {
+		super.onCreate(estado);
 		setContentView(R.layout.provas);
-		
+
+		ListaProvasFragment lista = new ListaProvasFragment(); 
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		
-		if(isTablet()){
-			transaction.replace(R.id.provas_lista, new ListaProvasFragment(true)).
-			replace(R.id.provas_view, new DetalhesProvaFragment());
-		}else{
-			transaction.replace(R.id.provas_view, new ListaProvasFragment(false));
-		}
+		transaction.replace(R.id.provas_lista, lista);
+
 		transaction.commit();
+		if(isTablet() && lista.getProvas() != null && !lista.getProvas().isEmpty())
+			setProva(lista.getProvas().get(0));
+		
 	}
 
-	public boolean isTablet(){
-		return getResources().getBoolean(R.bool.isTablet);
-	}
+	public void setProva(Prova prova) {
+		Bundle argumentos = new Bundle();
+		argumentos.putSerializable("prova", prova);
 
-	public void setProva(Prova prova){
-		Bundle args = new Bundle();
-		args.putSerializable("prova", prova);
-		
-		DetalhesProvaFragment detalhesProvaFragment = new DetalhesProvaFragment();
-		detalhesProvaFragment.setArguments(args);
-		
+		DetalhesProvaFragment detalhesProva = new DetalhesProvaFragment();
+		detalhesProva.setArguments(argumentos);
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.provas_view, detalhesProvaFragment);
-		
-		if(!isTablet()){
+
+		if (isTablet()) {
+			transaction.replace(R.id.provas_lista, new ListaProvasFragment());
+			transaction.replace(R.id.provas_view, detalhesProva);
+		} else {
+			transaction.replace(R.id.provas_lista, detalhesProva);
 			transaction.addToBackStack(null);
 		}
-		
+
 		transaction.commit();
+
+	}
+
+	public boolean isTablet() {
+		return getResources().getBoolean(R.bool.isTablet);
 	}
 }
