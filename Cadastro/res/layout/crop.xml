@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LaunchCamera"
+    android:background="#000000" >
+ 
+    <ImageView
+        android:id="@+id/capturaImagem"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:contentDescription="catured picture"
+        android:src="@drawable/ic_launcher" />
+ 
+    <Button
+        android:id="@+id/capturaBotao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:text="Take Picture" />
+ 
+</RelativeLayout>

@@ -1,8 +1,14 @@
 package com.example.cadastro.view;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,7 +31,8 @@ public class FormularioActivity extends ActionBarActivity {
 	private String caminhoFoto;
 	private static final int PICK_FROM_CAMERA = 101;
 	private static final int IMAGE_PICKER_SELECT = 102;
-
+	private static final int CROP_IMAGE = 103;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,7 +75,7 @@ public class FormularioActivity extends ActionBarActivity {
 				
 				Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI); 
 				startActivityForResult(i, IMAGE_PICKER_SELECT);
-				
+//				
 			}
 		});
 	}
@@ -90,13 +97,50 @@ public class FormularioActivity extends ActionBarActivity {
 		}
 
 		switch (requestCode) {
-			case PICK_FROM_CAMERA: 
-				this.helper.loadPhoto(this.caminhoFoto, true);
-				break;
-				
+//			case PICK_FROM_CAMERA: 
+//				this.helper.loadPhoto(this.caminhoFoto, true);
+//				break;
+//				
 			case IMAGE_PICKER_SELECT:
 				String pathFoto = getBitmapFromCameraData(data, this); 
-				this.helper.loadPhoto(pathFoto, false); 
+				//this.helper.loadPhoto(pathFoto, false); 
+				File file3 = new File(pathFoto);
+				cropCapturedImage(Uri.fromFile(file3));
+				break;
+				
+			case PICK_FROM_CAMERA:
+				// create instance of File with same name we created before to get
+				// image from storage
+				File file = new File(this.caminhoFoto);
+				// Crop the captured image using an other intent
+				try {
+					/* the user's device may not support cropping */
+					cropCapturedImage(Uri.fromFile(file));
+				} catch (ActivityNotFoundException aNFE) {
+					// display an error message if user device doesn't support
+					String errorMessage = "Sorry - your device doesn't support the crop action!";
+					Toast toast = Toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
+					toast.show();
+				}
+				break;
+			case CROP_IMAGE:
+				// Create an instance of bundle and get the returned data
+				Bundle extras = data.getExtras();
+				// get the cropped bitmap from extras
+				Bitmap photo = extras.getParcelable("data");
+				// set image bitmap to image view
+				//this.helper.getFoto().setImageBitmap(thePic);
+				
+				File file2 = new File(caminhoFoto);
+				try {
+					file2.createNewFile();
+	                FileOutputStream fos = new FileOutputStream(file2);
+	                photo.compress(Bitmap.CompressFormat.PNG, 95, fos);
+	                this.helper.loadPhoto(caminhoFoto, false); 
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 		}
 	}
@@ -111,4 +155,24 @@ public class FormularioActivity extends ActionBarActivity {
 		cursor.close(); 
 		return picturePath; 
 	}
+	
+	// create helping method cropCapturedImage(Uri picUri)
+	public void cropCapturedImage(Uri picUri) {
+		// call the standard crop action intent
+		Intent cropIntent = new Intent("com.android.camera.action.CROP");
+		// indicate image type and Uri of image
+		cropIntent.setDataAndType(picUri, "image/*");
+		// set crop properties
+		cropIntent.putExtra("crop", "true");
+		// indicate aspect of desired crop
+		cropIntent.putExtra("aspectX", 1);
+		cropIntent.putExtra("aspectY", 1);
+		// indicate output X and Y
+		cropIntent.putExtra("outputX", 256);
+		cropIntent.putExtra("outputY", 256);
+		// retrieve data on return
+		cropIntent.putExtra("return-data", true);
+		// start the activity - we handle returning in onActivityResult
+		startActivityForResult(cropIntent, CROP_IMAGE);
+	}	
 }
